@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="heart_margin">10dp</dimen>
+    <dimen name="heart_dimens">40dp</dimen>
+    <dimen name="lion_margin">120dp</dimen>
+    <dimen name="mat_margin">595dp</dimen>
+    <dimen name="text_size">60sp</dimen>
+    <dimen name="default_width">16dp</dimen>
+
+
+</resources>
