@@ -223,32 +223,7 @@
             app:srcCompat="@drawable/lion_face"/>
     </LinearLayout>
 
-    <!--
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/main_IMG_lion0"
-        android:layout_width="@dimen/lion_margin"
-        android:layout_height="@dimen/lion_margin"
-        android:layout_alignParentBottom="true"
-        android:visibility="invisible"
-        android:src="@drawable/lion_face" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/main_IMG_lion1"
-        android:layout_width="@dimen/lion_margin"
-        android:layout_height="@dimen/lion_margin"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:visibility="visible"
-        android:src="@drawable/lion_face" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/main_IMG_lion2"
-        android:layout_width="@dimen/lion_margin"
-        android:layout_height="@dimen/lion_margin"
-        android:layout_alignParentBottom="true"
-        android:visibility="invisible"
-        android:src="@drawable/lion_face" />
-    -->
     <com.google.android.material.textview.MaterialTextView
         android:id= "@+id/main_LBL_gameOver"
         android:layout_width="wrap_content"
