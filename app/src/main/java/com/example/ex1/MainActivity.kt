@@ -23,6 +23,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.example.ex1.logic.GameManager
 import com.example.ex1.utilities.Constants
+import com.example.ex1.utilities.SignalManager
 import com.example.ex1.utilities.buildLettuceMatrix
 
 
@@ -30,22 +31,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var gameManager: GameManager
     private lateinit var lettuceMatrix: Array<Array<Boolean>>
-
     private var isGameRunning = false
     private lateinit var lettuceOnJob: Job
-
     private lateinit var main_IMG_hearts: Array<AppCompatImageView>
-
     private lateinit var main_IMG_lettuces: Array<Array<AppCompatImageView>>
-
     private lateinit var main_IMG_lions: Array<AppCompatImageView>
-
     private lateinit var main_FAB_left: ExtendedFloatingActionButton
-
     private lateinit var main_FAB_right: ExtendedFloatingActionButton
-
     private lateinit var gameEngine: GameEngine
-
     private lateinit var main_LBL_gameOver: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,7 +105,9 @@ class MainActivity : AppCompatActivity() {
     private fun checkCollision() {
         if (gameManager.isCollision(lettuceMatrix)) {
             gameManager.hit()
-            Toast.makeText(this, "VIBRATE!", Toast.LENGTH_SHORT).show()
+
+            SignalManager.getInstance().vibrate()
+            SignalManager.getInstance().toast("Crashing 😱")
 
             main_IMG_hearts[gameManager.livesLeft].visibility = View.INVISIBLE
 
@@ -142,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun runLettuceFrame() {
-        gameManager.shiftLettucesDown(lettuceMatrix)
+        gameEngine.shiftLettucesDown(lettuceMatrix)
         refreshLettuceUI()
         updateLionPosition()
         checkCollision()
