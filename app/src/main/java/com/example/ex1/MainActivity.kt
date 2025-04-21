@@ -1,16 +1,9 @@
 package com.example.ex1
 
-import android.Manifest
-import android.os.Build
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
-import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.ViewCompat
@@ -52,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
         findViews()
         gameManager = GameManager()
-        gameEngine = GameEngine(main_IMG_lettuces)
+        gameEngine = GameEngine()
         initViews()
         lettuceMatrix = Array(4) { Array(3) { false } }
 
@@ -84,7 +77,6 @@ class MainActivity : AppCompatActivity() {
         main_FAB_right.setOnClickListener {v:View ->onRightClick() }
         updateLionPosition()
     }
-
     private fun onLeftClick() {
         gameManager.moveLeft()
         updateLionPosition()
@@ -100,29 +92,6 @@ class MainActivity : AppCompatActivity() {
         }
         val col = gameManager.lionCol
         main_IMG_lions[col].visibility = View.VISIBLE
-    }
-
-    private fun checkCollision() {
-        if (gameManager.isCollision(lettuceMatrix)) {
-            gameManager.hit()
-
-            SignalManager.getInstance().vibrate()
-            SignalManager.getInstance().toast("Crashing 😱")
-
-            main_IMG_hearts[gameManager.livesLeft].visibility = View.INVISIBLE
-
-            if (gameManager.isGameOver()) {
-                main_LBL_gameOver.visibility = View.VISIBLE
-                stopGame()
-            }
-        }
-    }
-
-    private fun stopGame() {
-        isGameRunning = false
-        if (::lettuceOnJob.isInitialized) {
-            lettuceOnJob.cancel()
-        }
     }
 
     private fun startLettuceLoop() {
@@ -142,7 +111,6 @@ class MainActivity : AppCompatActivity() {
         updateLionPosition()
         checkCollision()
     }
-
     private fun refreshLettuceUI() {
         for (row in 0..3) {
             for (col in 0..2) {
@@ -156,4 +124,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun checkCollision() {
+        if (gameManager.isCollision(lettuceMatrix)) {
+            gameManager.hit()
+
+            SignalManager.getInstance().vibrate()
+            SignalManager.getInstance().toast("Crashing!💥")
+
+            main_IMG_hearts[gameManager.livesLeft].visibility = View.INVISIBLE
+
+            if (gameManager.isGameOver()) {
+                main_LBL_gameOver.visibility = View.VISIBLE
+                stopGame()
+            }
+        }
+    }
+
+    private fun stopGame() {
+        isGameRunning = false
+        if (::lettuceOnJob.isInitialized) {
+            lettuceOnJob.cancel()
+        }
+    }
+
+
 }
