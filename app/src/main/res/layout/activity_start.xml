@@ -1,0 +1,55 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lion_app_image"
+    android:padding="32dp"
+    android:gravity="top|center_horizontal">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/start_BTN_slow_mode"
+            android:text="@string/button_slow"
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightP"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/start_BTN_fast_mode"
+            android:text="@string/button_fast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightP"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/start_BTN_sensors_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:backgroundTint="@color/lightP"
+        android:text="@string/sensors_mode"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/start_BTN_highScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:backgroundTint="@color/lightP"
+        android:text="@string/view_high_scores" />
+
+
+</LinearLayout>

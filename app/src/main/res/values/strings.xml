@@ -1,4 +1,22 @@
 <resources>
-    <string name="app_name">ex1</string>
+    <string name="app_name">Feed The Lion</string>
     <string name="game_over">Game Over!</string>
+    <string name="score">Score: 0</string>
+    <string name="send">Send</string>
+    <string name="please_enter_location">Please Enter Location</string>
+    <string name="lion_vs_lettuce">Feed The Lion</string>
+    <string name="button_mode">Button mode</string>
+    <string name="button_slow">Button: Slow </string>
+    <string name="button_fast">Button: Fast </string>
+    <string name="sensors_mode">Sensor mode</string>
+    <string name="distance_0">Distance: 0</string>
+    <string name="score_0_distance_0m">Score: 0\nDistance: 0m</string>
+    <string name="default_distance">120m</string>
+    <string name="default_location">Tel Aviv</string>
+    <string name="default_score">Score: 120</string>
+    <string name="_1">1.</string>
+    <string name="view_high_scores">View High Scores</string>
+    <string name="back_to_start">Back To Start</string>
+
+
 </resources>
