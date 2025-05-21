@@ -7,6 +7,9 @@
     <dimen name="mat_margin">595dp</dimen>
     <dimen name="text_size">60sp</dimen>
     <dimen name="default_width">16dp</dimen>
+    <dimen name="text_size_score">30sp</dimen>
+    <dimen name="button_margin">16dp</dimen>
+    <dimen name="default_size">16sp</dimen>
 
 
 </resources>

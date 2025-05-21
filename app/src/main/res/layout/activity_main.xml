@@ -10,6 +10,7 @@
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/main_IMG_hearts_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -37,152 +38,28 @@
             app:srcCompat="@drawable/heart" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-
     <GridLayout
-        android:id="@id/main_grid"
+        android:id="@+id/main_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="3"
-        android:padding="@dimen/default_margin"
-        android:rowCount="4">
+        android:layout_below="@+id/main_IMG_hearts_container"
+        android:columnCount="5"
+        android:rowCount="6"
+        android:padding="8dp" />
 
-        <!-- row 0 -->
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce00"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/main_LBL_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/default_margin"
+        tools:text="Score: 0"
+        android:textSize="@dimen/text_size_score"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce01"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce02"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <!-- row 1 -->
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce10"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce11"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce12"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <!--row 2 -->
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce20"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce21"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce22"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <!-- row 3 -->
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce30"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce31"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_IMG_lettuce32"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lettuce"
-            android:visibility="invisible" />
-
-    </GridLayout>
     <LinearLayout
         android:id="@+id/lions_row"
         android:layout_width="match_parent"
@@ -190,7 +67,8 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:gravity="center"
-        android:padding="@dimen/default_margin">
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/main_IMG_lion0"
@@ -207,7 +85,7 @@
             android:layout_width="@dimen/default_width"
             android:layout_height="@dimen/lion_margin"
             android:layout_weight="1"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/lion_face"/>
@@ -217,24 +95,32 @@
             android:layout_width="@dimen/default_width"
             android:layout_height="@dimen/lion_margin"
             android:layout_weight="1"
+            android:visibility="visible"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/lion_face"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_lion3"
+            android:layout_width="@dimen/default_width"
+            android:layout_height="@dimen/lion_margin"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/lion_face"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_lion4"
+            android:layout_width="@dimen/default_width"
+            android:layout_height="@dimen/lion_margin"
+            android:layout_weight="1"
             android:visibility="invisible"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/lion_face"/>
     </LinearLayout>
 
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id= "@+id/main_LBL_gameOver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:textSize="@dimen/text_size"
-        android:textStyle="bold|italic"
-        android:textColor="@color/text_color"
-        android:text="@string/game_over"
-        />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/main_FAB_left"
@@ -259,4 +145,16 @@
         android:layout_margin="@dimen/default_margin"
         android:backgroundTint="@color/purple"
         />
+
+    <TextView
+        android:id="@+id/main_LBL_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/score_0_distance_0m"
+        android:textSize="@dimen/text_size_score"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
 </RelativeLayout>
