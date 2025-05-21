@@ -1,3 +1,4 @@
+
 # 🦁 Feed The Lion – Android Game App
 
 **Feed The Lion** is a fun and interactive Android game developed as part of the course _Mobile Application Development_.
@@ -55,3 +56,6 @@ The objective is to move the lion using your phone's tilt sensor and collect as 
 **[Shani Shalev]**  
 As part of the course: **Mobile Application Development**  
 Academic Year: 2025
+=======
+
+
