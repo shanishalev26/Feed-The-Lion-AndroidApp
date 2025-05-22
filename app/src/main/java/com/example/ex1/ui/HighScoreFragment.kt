@@ -1,5 +1,6 @@
 package com.example.ex1.ui
 
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.ex1.interfaces.Callback_HighScoreItemClicked
 import com.example.ex1.utilities.HighScoreManager
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import java.util.Locale
 
 class HighScoreFragment : Fragment() {
 
@@ -68,9 +70,16 @@ class HighScoreFragment : Fragment() {
 
             val score = requireActivity().intent.getIntExtra("EXTRA_SCORE", 0)
             val distance = requireActivity().intent.getIntExtra("EXTRA_DISTANCE", 0)
-            val location = "$lat,$lon"
 
-            HighScoreManager.saveHighScore(requireContext(), HighScore(score, distance, location))
+            // Convert coordinates to city name using Geocoder
+            val geocoder = Geocoder(requireContext(), Locale.ENGLISH)
+            val city = try {
+                geocoder.getFromLocation(lat,lon,1)?.getOrNull(0)?.locality ?: "$lat,$lon"
+            } catch (e: Exception){
+                "$lat,$lon"
+            }
+
+            HighScoreManager.saveHighScore(requireContext(), HighScore(score, distance, city))
 
             itemClicked(lat, lon)
 
