@@ -28,7 +28,6 @@ object HighScoreManager {
             }
     }
 
-
     fun getHighScores(context: Context): List<HighScore> {
         val json = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             .getString(KEY_SCORES, null) ?: return emptyList()

@@ -17,6 +17,10 @@
     <string name="_1">1.</string>
     <string name="view_high_scores">View High Scores</string>
     <string name="back_to_start">Back To Start</string>
+    <string name="location">Location</string>
+    <string name="distance">Distance</string>
+    <string name="final_score">Score</string>
+    <string name="name">Name</string>
 
 
 </resources>
