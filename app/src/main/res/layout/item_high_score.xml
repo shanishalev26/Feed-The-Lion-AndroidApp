@@ -1,31 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:padding="8dp"
     android:background="@color/lightBlue"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layoutDirection="ltr"
+    >
 
     <TextView
-        android:id="@+id/item_LBL_place"
-        android:layout_width="40dp"
+        android:id="@+id/item_LBL_name"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textStyle="bold"
+        android:textDirection="ltr"
+        android:gravity="start"
         />
 
     <TextView
         android:id="@+id/item_LBL_score"
-        android:layout_width="80dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-         />
+        android:text="@string/final_score"
+        android:textStyle="bold"
+        android:textDirection="ltr"
+        android:gravity="start"
+        />
 
     <TextView
         android:id="@+id/item_LBL_distance"
-        android:layout_width="80dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-         />
+        android:text="@string/distance"
+        android:textStyle="bold"
+        android:textDirection="ltr"
+        android:gravity="start"
+        />
 
     <TextView
         android:id="@+id/item_LBL_location"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-         />
+        android:layout_weight="1"
+        android:text="@string/location"
+        android:textStyle="bold"
+        android:textDirection="ltr"
+        android:gravity="start"
+        />
 </LinearLayout>

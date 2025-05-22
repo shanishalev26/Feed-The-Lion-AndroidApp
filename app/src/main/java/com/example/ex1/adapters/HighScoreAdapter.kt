@@ -1,5 +1,6 @@
 package com.example.ex1.adapters
 
+import android.location.Geocoder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ex1.R
 import com.example.ex1.data.HighScore
+import java.util.Locale
 
 class HighScoreAdapter(
     private val scores: List<HighScore>,
@@ -14,8 +16,9 @@ class HighScoreAdapter(
 ) : RecyclerView.Adapter<HighScoreAdapter.HighScoreViewHolder>() {
 
     class HighScoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val placeText: TextView = view.findViewById(R.id.item_LBL_place)
+        val nameText: TextView = view.findViewById(R.id.item_LBL_name)
         val scoreText: TextView = view.findViewById(R.id.item_LBL_score)
+        val distanceText: TextView = view.findViewById(R.id.item_LBL_distance)
         val locationText: TextView = view.findViewById(R.id.item_LBL_location)
     }
 
@@ -27,9 +30,23 @@ class HighScoreAdapter(
 
     override fun onBindViewHolder(holder: HighScoreViewHolder, position: Int) {
         val highScore = scores[position]
-        holder.placeText.text = "${position + 1}."
-        holder.scoreText.text = "Score: ${highScore.score}, Distance: ${highScore.distance}"
-        holder.locationText.text = highScore.location
+
+        holder.nameText.text = highScore.name
+        holder.scoreText.text = highScore.score.toString()
+        holder.distanceText.text = "${highScore.distance}m"
+
+        val parts = highScore.location.split(",")
+        val lat = parts.getOrNull(0)?.toDoubleOrNull() ?: 0.0
+        val lon = parts.getOrNull(1)?.toDoubleOrNull() ?: 0.0
+
+        val geocoder = Geocoder(holder.itemView.context, Locale.ENGLISH)
+        val city = try {
+            geocoder.getFromLocation(lat, lon, 1)?.getOrNull(0)?.locality ?: highScore.location
+        } catch (e: Exception) {
+            highScore.location
+        }
+
+        holder.locationText.text = city
 
         holder.itemView.setOnClickListener {
             callback?.invoke(highScore)

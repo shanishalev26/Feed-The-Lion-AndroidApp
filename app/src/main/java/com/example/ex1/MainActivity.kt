@@ -24,10 +24,13 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.example.ex1.logic.GameManager
+import com.example.ex1.utilities.BackgroundMusicPlayer
 import com.example.ex1.utilities.HighScoreManager
 import com.example.ex1.utilities.SignalManager
 import com.example.ex1.utilities.SingleSoundPlayer
 import com.example.ex1.utilities.TiltDetector
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,10 +53,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var main_LBL_summary: TextView
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        BackgroundMusicPlayer.init(this)
+        BackgroundMusicPlayer.getInstance().setResourceId(R.raw.game_music_background)
+        BackgroundMusicPlayer.getInstance().playMusic()
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -155,6 +167,7 @@ class MainActivity : AppCompatActivity() {
         gameManager.moveLeft()
         updateLionPosition()
     }
+
     private fun onRightClick() {
         gameManager.moveRight()
         updateLionPosition()
@@ -179,6 +192,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun runLettuceFrame() {
         gameEngine.shiftObjectsDown(matrix)
         refreshLettuceUI()
@@ -196,10 +210,12 @@ class MainActivity : AppCompatActivity() {
                         main_IMG_lettuces[row][col].setImageResource(R.drawable.lettuce)
                         main_IMG_lettuces[row][col].visibility = View.VISIBLE
                     }
+
                     GameEngine.STEAK -> {
                         main_IMG_lettuces[row][col].setImageResource(R.drawable.steak)
                         main_IMG_lettuces[row][col].visibility = View.VISIBLE
                     }
+
                     else -> {
                         main_IMG_lettuces[row][col].setImageDrawable(null)
                         main_IMG_lettuces[row][col].visibility = View.INVISIBLE
@@ -209,7 +225,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-   // @SuppressLint("SetTextI18n")
+    // @SuppressLint("SetTextI18n")
     private fun checkCollision() {
         val lionCol = gameManager.lionCol
         val lastRow = matrix.size - 1
@@ -222,6 +238,7 @@ class MainActivity : AppCompatActivity() {
                 soundPlayer.playSound(R.raw.punch)
                 main_IMG_hearts[gameManager.livesLeft].visibility = View.INVISIBLE
             }
+
             GameEngine.STEAK -> {
                 gameManager.collectSteak()
                 SignalManager.getInstance().toast("Yummy! 🥩")
@@ -236,7 +253,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleGameOver(){
+    private fun handleGameOver() {
         stopGame()
 
         // Show the summary in the middle of the screen
@@ -298,12 +315,12 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
     override fun onResume() {
         super.onResume()
         if (::tiltDetector.isInitialized) {
             tiltDetector.start()
         }
+        BackgroundMusicPlayer.getInstance().playMusic()
     }
 
     override fun onPause() {
@@ -311,6 +328,7 @@ class MainActivity : AppCompatActivity() {
         if (::tiltDetector.isInitialized) {
             tiltDetector.stop()
         }
+        BackgroundMusicPlayer.getInstance().pauseMusic()
     }
-
 }
+
