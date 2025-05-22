@@ -35,14 +35,6 @@ class HighScoresActivity : AppCompatActivity(){
         enableEdgeToEdge()
         setContentView(R.layout.activity_high_scores)
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                1001
-            )
-        }
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -51,8 +43,12 @@ class HighScoresActivity : AppCompatActivity(){
 
         val score = intent.getIntExtra("EXTRA_SCORE", 0)
         val distance = intent.getIntExtra("EXTRA_DISTANCE", 0)
+        val highScores = HighScoreManager.getHighScores(this)
 
-        if (score > 0) {
+        val lowestScore = highScores.minByOrNull { it.score }?.score ?: 0
+        val shouldAdd = highScores.size < 10 || score > lowestScore
+
+        if (shouldAdd && score > 0) {
             val input = EditText(this)
             input.hint = "Enter your name"
 
@@ -63,14 +59,25 @@ class HighScoresActivity : AppCompatActivity(){
                     val name = input.text.toString().ifBlank { "Unknown" }
 
                     val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-                    fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                        val lat = location?.latitude ?: 0.0
-                        val lon = location?.longitude ?: 0.0
-                        val locationStr = "$lat,$lon"
 
-                        val highScore = HighScore(name, score, distance, locationStr)
-                        HighScoreManager.saveHighScore(this, highScore)
+                    if (ActivityCompat.checkSelfPermission(
+                            this,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION
+                        ) == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                            val lat = location?.latitude ?: 0.0
+                            val lon = location?.longitude ?: 0.0
+                            val locationStr = "$lat,$lon"
 
+                            val highScore = HighScore(name, score, distance, locationStr)
+                            HighScoreManager.saveHighScore(this, highScore)
+
+                            findViews()
+                            initViews()
+                        }
+                    } else {
+                        Toast.makeText(this, "Location permission not granted", Toast.LENGTH_SHORT).show()
                         findViews()
                         initViews()
                     }
@@ -89,7 +96,6 @@ class HighScoresActivity : AppCompatActivity(){
             finish()
         }
     }
-
 
     private fun findViews() {
         main_FRAME_list = findViewById(R.id.main_FRAME_list)
