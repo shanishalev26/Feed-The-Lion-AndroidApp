@@ -32,9 +32,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
-        val defaultLocation = LatLng(32.0853, 34.7818) // TEL AVIV
-        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
+        val israel = LatLng(31.0461, 34.8516)
+        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(israel, 6f))
     }
+
 
     fun zoom(lat: Double, lon: Double) {
         val location = LatLng(lat, lon)

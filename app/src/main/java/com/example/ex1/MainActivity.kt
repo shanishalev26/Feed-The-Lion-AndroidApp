@@ -298,7 +298,6 @@ class MainActivity : AppCompatActivity() {
         gameManager.setSpeed(speed)
     }
 
-
     private fun startSensorControl() {
         tiltDetector = TiltDetector(this, object : TiltCallback {
             override fun tiltX(x: Float) {
@@ -312,7 +311,6 @@ class MainActivity : AppCompatActivity() {
             }
             override fun tiltY(y: Float) {}
         })
-
         tiltDetector.start()
     }
 
