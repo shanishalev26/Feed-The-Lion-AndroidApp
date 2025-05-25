@@ -308,7 +308,7 @@ class MainActivity : AppCompatActivity() {
                 if (fixedX > 2) {
                     gameManager.moveRight()
                     updateLionPosition()
-                } else if (x < -2) {
+                } else if (fixedX < -2) {
                     gameManager.moveLeft()
                     updateLionPosition()
                 }
