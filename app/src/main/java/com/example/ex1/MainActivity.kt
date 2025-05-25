@@ -311,6 +311,9 @@ class MainActivity : AppCompatActivity() {
                 } else if (fixedX < -2) {
                     gameManager.moveLeft()
                     updateLionPosition()
+                } else if (x < -2) {
+                    gameManager.moveRight()
+                    updateLionPosition()
                 }
             }
 
