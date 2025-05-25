@@ -316,6 +316,8 @@ class MainActivity : AppCompatActivity() {
 
             override fun tiltY(y: Float) {}
         })
+
+        tiltDetector.start()
     }
 
     override fun onResume() {
