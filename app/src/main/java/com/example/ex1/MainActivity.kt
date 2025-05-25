@@ -303,16 +303,17 @@ class MainActivity : AppCompatActivity() {
         tiltDetector = TiltDetector(this, object : TiltCallback {
             override fun tiltX(x: Float) {
                 if (x > 2) {
-                    gameManager.moveRight()
+                    gameManager.moveLeft()
                     updateLionPosition()
                 } else if (x < -2) {
-                    gameManager.moveLeft()
+                    gameManager.moveRight()
                     updateLionPosition()
                 }
             }
-
             override fun tiltY(y: Float) {}
         })
+
+        tiltDetector.start()
     }
 
     override fun onResume() {
