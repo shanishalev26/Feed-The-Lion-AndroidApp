@@ -302,7 +302,10 @@ class MainActivity : AppCompatActivity() {
     private fun startSensorControl() {
         tiltDetector = TiltDetector(this, object : TiltCallback {
             override fun tiltX(x: Float) {
-                if (x > 2) {
+                val isRTL = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+                val fixedX = if (isRTL) -x else x
+
+                if (fixedX > 2) {
                     gameManager.moveRight()
                     updateLionPosition()
                 } else if (x < -2) {
